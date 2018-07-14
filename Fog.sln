@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BC43D342-97AF-4CAF-A175-9F07D1B9CB7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fog", "src\Fog\Fog.csproj", "{F1ED6552-8C9F-457E-BA3C-E3EA7842376A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fog", "src\Fog\Fog.csproj", "{F1ED6552-8C9F-457E-BA3C-E3EA7842376A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BFAB20FF-2E89-4BCE-9C4A-3FD551B25330}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{D28EDF1B-363D-4381-9697-9F33DADF983D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fog.Tests", "test\Fog.Tests\Fog.Tests.csproj", "{8CEE9083-BEA0-42EE-B35A-68CE0E4EF8FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,12 +23,17 @@ Global
 		{F1ED6552-8C9F-457E-BA3C-E3EA7842376A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1ED6552-8C9F-457E-BA3C-E3EA7842376A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1ED6552-8C9F-457E-BA3C-E3EA7842376A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CEE9083-BEA0-42EE-B35A-68CE0E4EF8FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CEE9083-BEA0-42EE-B35A-68CE0E4EF8FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CEE9083-BEA0-42EE-B35A-68CE0E4EF8FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CEE9083-BEA0-42EE-B35A-68CE0E4EF8FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F1ED6552-8C9F-457E-BA3C-E3EA7842376A} = {BC43D342-97AF-4CAF-A175-9F07D1B9CB7E}
+		{8CEE9083-BEA0-42EE-B35A-68CE0E4EF8FD} = {BFAB20FF-2E89-4BCE-9C4A-3FD551B25330}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60B0A3B7-FE92-4474-B7B2-5F563A39156E}
