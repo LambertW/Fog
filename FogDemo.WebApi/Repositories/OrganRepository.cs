@@ -18,16 +18,11 @@ namespace FogDemo.WebApi.Repositories
         public OrganRepository(MyDbContext dbContext)
         {
             MyDbContext = dbContext;
-
-            dbContext.Database.EnsureCreated();
         }
 
         public override async Task<Organ> InsertAsync(Organ entity, Organ parentEntity)
         {
-            entity.InitPath(parentEntity);
-
-            var result = await Table.AddAsync(entity);
-            return result.Entity;
+            return await InsertAsync(entity, parentEntity.Id);
         }
 
         public override async Task<Organ> InsertAsync(Organ entity)
@@ -35,6 +30,17 @@ namespace FogDemo.WebApi.Repositories
             entity.InitPath();
 
             var result = await Table.AddAsync(entity);
+            return result.Entity;
+        }
+
+        public async Task<Organ> InsertAsync(Organ entity, Guid parentId)
+        {
+            var parent = await GetAsync(parentId);
+
+            entity.InitPath(parent);
+
+            var result = await Table.AddAsync(entity);
+
             return result.Entity;
         }
 

@@ -33,9 +33,9 @@ namespace FogDemo.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Organ>> Add(Organ org)
+        public async Task<ActionResult<Organ>> Add(Organ org, Guid parentId)
         {
-            var organ = await _organRepository.InsertAsync(org);
+            var organ = await _organRepository.InsertAsync(org, parentId);
 
             return new JsonResult(organ);
         }
