@@ -11,6 +11,8 @@ namespace Fog.Domain.Repositories
         Task<int> GenerateSortIdAsync(TPrimaryKey parentId);
 
         Task<List<TEntity>> GetAllChildrenAsync(TEntity parent);
+
+        Task<TEntity> InsertAsync(TEntity entity, TEntity parentEntity);
     }
 
     public interface ITreeRepository<TEntity> : IRepository<TEntity, Guid> where TEntity : class, IEntity<Guid>

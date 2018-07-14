@@ -37,6 +37,8 @@ namespace Fog.Domain.Entities
                 return;
             }
 
+            ParentId = parent.Id;
+            ParentName = parent.Name;
             Level = parent.Level + 1;
             Path = $"{parent.Path}{Id},";
         }

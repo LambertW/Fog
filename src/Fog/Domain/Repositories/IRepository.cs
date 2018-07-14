@@ -1,6 +1,7 @@
 ﻿using Fog.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,9 +11,16 @@ namespace Fog.Domain.Repositories
     {
         #region Select/Get/Query
 
+        IQueryable<TEntity> GetAll();
+
         Task<List<TEntity>> GetAllListAsync();
 
         Task<TEntity> GetAsync(TPrimaryKey id);
+
+        TEntity FirstOrDefault(TPrimaryKey id);
+
+        Task<TEntity> FirstOrDefaultAsync(TPrimaryKey id);
+
 
         #endregion
 
