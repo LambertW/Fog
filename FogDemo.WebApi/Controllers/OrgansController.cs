@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using FogDemo.Core.Domain;
+using FogDemo.WebApi.Repositories;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace FogDemo.WebApi.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class OrgansController : ControllerBase
+    {
+        private readonly IOrganRepository _organRepository;
+
+        public OrgansController(IOrganRepository organRepository)
+        {
+            _organRepository = organRepository;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<Organ>>> GetAll()
+        {
+            return await _organRepository.GetAllListAsync();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Organ>> GetById(Guid id)
+        {
+            return await _organRepository.GetAsync(id);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Organ>> Add(Organ org, Guid parentId)
+        {
+            var organ = await _organRepository.InsertAsync(org, parentId);
+
+            return new JsonResult(organ);
+        }
+    }
+}
