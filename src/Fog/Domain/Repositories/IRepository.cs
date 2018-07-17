@@ -1,4 +1,5 @@
-﻿using Fog.Domain.Entities;
+﻿using Fog.Dependency;
+using Fog.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Fog.Domain.Repositories
 {
-    public interface IRepository<TEntity, TPrimaryKey> where TEntity : class, IEntity<TPrimaryKey>
+    public interface IRepository<TEntity, TPrimaryKey> : IScopeDependency where TEntity : class, IEntity<TPrimaryKey>
     {
         #region Select/Get/Query
 
