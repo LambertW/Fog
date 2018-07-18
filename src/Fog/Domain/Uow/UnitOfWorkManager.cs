@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fog.Data.UnitOfWork
+namespace Fog.Domain.Uow
 {
     public class UnitOfWorkManager : IUnitOfWorkManager
     {

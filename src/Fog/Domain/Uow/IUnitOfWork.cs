@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Fog.Data.UnitOfWork
+namespace Fog.Domain.Uow
 {
     public interface IUnitOfWork : IDisposable
     {
-        int Commit();
+        void Commit();
 
-        Task<int> CommitAsync();
+        Task CommitAsync();
     }
 }

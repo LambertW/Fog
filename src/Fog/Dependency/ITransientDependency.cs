@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Fog.Dependency
 {
-    interface ITransientDependency
+    public interface ITransientDependency
     {
     }
 }

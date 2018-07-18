@@ -33,6 +33,8 @@ namespace Fog.Dependency
                 builder.RegisterModule(config);
             }
 
+            builder.RegisterInstance(IocManager.Instance).AsSelf().SingleInstance();
+
             if (services != null)
                 builder.Populate(services);
 
