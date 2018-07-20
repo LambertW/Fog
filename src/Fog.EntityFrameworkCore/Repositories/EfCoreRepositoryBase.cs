@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Fog.EntityFrameworkCore.Repositories
@@ -14,14 +13,14 @@ namespace Fog.EntityFrameworkCore.Repositories
     public class EfCoreRepositoryBase<TEntity, TPrimaryKey> : RepositoryBase<TEntity, TPrimaryKey> where TEntity : class, IEntity<TPrimaryKey>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly DbContext context;
+        private readonly DbContext _context;
 
-        public virtual DbSet<TEntity> Table => context.Set<TEntity>();
+        public virtual DbSet<TEntity> Table => _context.Set<TEntity>();
 
         public EfCoreRepositoryBase(IUnitOfWork unitOfWork, DbContext context)
         {
             _unitOfWork = unitOfWork;
-            ((EfCoreUnitOfWork)_unitOfWork).GetOrCreateDbContext(context);
+            _context = ((EfCoreUnitOfWork)_unitOfWork).GetOrCreateDbContext(context);
         }
 
         public override Task DeleteAsync(TEntity entity)
@@ -50,27 +49,30 @@ namespace Fog.EntityFrameworkCore.Repositories
 
         public override IQueryable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+            return Table.AsQueryable();
         }
 
-        public override Task<List<TEntity>> GetAllListAsync()
+        public override async Task<List<TEntity>> GetAllListAsync()
         {
-            throw new NotImplementedException();
+            return await GetAll().ToListAsync();
         }
 
-        public override Task<TEntity> InsertAsync(TEntity entity)
+        public override async Task<TEntity> InsertAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            var entry = await Table.AddAsync(entity);
+            return entry.Entity;
         }
 
         public override Task<TEntity> UpdateAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            AttachIfNot(entity);
+            _context.Entry(entity).State = EntityState.Modified;
+            return Task.FromResult(entity);
         }
 
         protected virtual void AttachIfNot(TEntity entity)
         {
-            var entry = context.ChangeTracker.Entries().FirstOrDefault(ent => ent.Entity == entity);
+            var entry = _context.ChangeTracker.Entries().FirstOrDefault(ent => ent.Entity == entity);
             if (entity != null)
                 return;
 
@@ -79,7 +81,7 @@ namespace Fog.EntityFrameworkCore.Repositories
 
         protected TEntity GetFromChangeTrackerOrNull(TPrimaryKey id)
         {
-            var entry = context.ChangeTracker.Entries()
+            var entry = _context.ChangeTracker.Entries()
                 .FirstOrDefault(
                     ent =>
                         ent.Entity is TEntity &&
@@ -87,6 +89,13 @@ namespace Fog.EntityFrameworkCore.Repositories
                         );
 
             return entry?.Entity as TEntity;
+        }
+    }
+
+    public class EfCoreRepositoryBase<TEntity> : EfCoreRepositoryBase<TEntity, Guid> where TEntity : class, IEntity<Guid>
+    {
+        public EfCoreRepositoryBase(IUnitOfWork unitOfWork, DbContext context) : base(unitOfWork, context)
+        {
         }
     }
 }

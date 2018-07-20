@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Fog.EntityFrameworkCore\Fog.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\src\Fog\Fog.csproj" />
     <ProjectReference Include="..\FogDemo.Core\FogDemo.Core.csproj" />
   </ItemGroup>
