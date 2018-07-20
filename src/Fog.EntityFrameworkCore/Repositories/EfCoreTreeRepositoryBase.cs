@@ -16,25 +16,25 @@ namespace Fog.EntityFrameworkCore.Repositories
         {
         }
 
-        public Task<int> GenerateSortIdAsync(TPrimaryKey parentId)
+        public virtual Task<int> GenerateSortIdAsync(TPrimaryKey parentId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<TEntity>> GetAllChildrenAsync(TEntity parent)
+        public virtual Task<List<TEntity>> GetAllChildrenAsync(TEntity parent)
         {
             var entityList = GetAll().Where(t => t.Path.Contains(parent.Id.ToString()));
             return Task.FromResult(entityList.ToList());
         }
 
-        public async Task<TEntity> InsertAsync(TEntity entity, TEntity parentEntity)
+        public virtual async Task<TEntity> InsertAsync(TEntity entity, TEntity parentEntity)
         {
             entity.InitPath(parentEntity);
 
             return await InsertAsync(entity);
         }
 
-        public async Task<TEntity> InsertAsync(TEntity entity, TPrimaryKey parentId)
+        public virtual async Task<TEntity> InsertAsync(TEntity entity, TPrimaryKey parentId)
         {
             var parentEntity = await GetAsync(parentId);
 
