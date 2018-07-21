@@ -5,21 +5,20 @@ using System.Threading.Tasks;
 using Fog.Linq.Extensions;
 using FogDemo.EntityFrameworkCore.EntityFrameworkCore.Repositories.Tasks;
 using Fog.Domain.Uow;
+using Fog.Aspects;
 
 namespace FogDemo.Application.Tasks
 {
     public class TaskAppService : ITaskAppService
     {
         private readonly ITaskRepository _taskRepository;
-        private readonly IUnitOfWork _unitOfWork;
 
-        public TaskAppService(ITaskRepository repository, IUnitOfWork unitOfWork)
+        public TaskAppService(ITaskRepository repository)
         {
             _taskRepository = repository;
-            _unitOfWork = unitOfWork;
         }
 
-        public async System.Threading.Tasks.Task Create(CreateTaskInput input)
+        public virtual async System.Threading.Tasks.Task Create(CreateTaskInput input)
         {
             var task = new Core.Tasks.Task
             {
@@ -29,11 +28,9 @@ namespace FogDemo.Application.Tasks
             };
 
             await _taskRepository.InsertAsync(task);
-
-            await _unitOfWork.CommitAsync();
         }
 
-        public async Task<List<TaskListDto>> GetAll(GetAllTasksInput input)
+        public virtual async Task<List<TaskListDto>> GetAll(GetAllTasksInput input)
         {
             var tasks = await _taskRepository
                 .GetAll()

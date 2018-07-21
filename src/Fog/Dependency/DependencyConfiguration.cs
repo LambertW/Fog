@@ -1,4 +1,7 @@
-﻿using Autofac;
+﻿using AspectCore.DynamicProxy;
+using AspectCore.Extensions.AspectScope;
+using AspectCore.Extensions.Autofac;
+using Autofac;
 using Fog.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -34,9 +37,27 @@ namespace Fog.Dependency
             _finder = new WebFinder();
             _assemblies = _finder.GetAssemblies();
 
-            //RegisterInfrastracture();
+            RegisterInfrastracture();
             //RegisterEventHandlers();
             RegisterDependency();
+        }
+
+        private void RegisterInfrastracture()
+        {
+            EnabledAop();
+        }
+
+        private void EnabledAop()
+        {
+            _builder.RegisterDynamicProxy(options =>
+            {
+            });
+
+            #region AddApsectScope
+            _builder.RegisterType<ScopeAspectScheduler>().As<IAspectScheduler>().InstancePerLifetimeScope();
+            _builder.RegisterType<ScopeAspectContextFactory>().As<IAspectContextFactory>().InstancePerLifetimeScope();
+            _builder.RegisterType<ScopeAspectBuilderFactory>().As<IAspectBuilderFactory>().InstancePerLifetimeScope();
+            #endregion
         }
 
         private void RegisterDependency()
