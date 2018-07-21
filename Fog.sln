@@ -17,7 +17,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FogDemo.Core", "samples\Fog
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FogDemo.WebApi", "samples\FogDemo.WebApi\FogDemo.WebApi.csproj", "{6186D185-E529-4D4B-80B2-6C5E5E03443A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fog.EntityFrameworkCore", "src\Fog.EntityFrameworkCore\Fog.EntityFrameworkCore.csproj", "{EE119993-0E15-4CF6-ABB3-F7B98EFDC4BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fog.EntityFrameworkCore", "src\Fog.EntityFrameworkCore\Fog.EntityFrameworkCore.csproj", "{EE119993-0E15-4CF6-ABB3-F7B98EFDC4BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution-items", "solution-items", "{9546F313-CF0A-40F8-858D-816449A1EBE6}"
+	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
