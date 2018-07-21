@@ -1,0 +1,17 @@
+# Travis CI提供 phantomjs预装
+language: csharp
+mono: none
+# dist: trusty
+dotnet: 2.1.302
+
+# 打印组件版本
+before_install:
+  - dotnet --version
+  - phantomjs --version
+
+install:
+  - dotnet restore
+
+script:
+  - dotnet build
+  - dotnet test test/Fog.Tests/Fog.Tests.csproj

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Fog.Dependency;
 using FogDemo.Core.Domain;
 using FogDemo.WebApi.Repositories;
 using Microsoft.AspNetCore.Http;
@@ -29,7 +31,12 @@ namespace FogDemo.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Organ>> GetById(Guid id)
         {
-            return await _organRepository.GetAsync(id);
+            using (var scope = IocManager.Instance.IocContainer.BeginLifetimeScope())
+            {
+                var repository = scope.Resolve<IOrganRepository>();
+
+                return await repository.GetAsync(id);
+            }
         }
 
         [HttpPost]

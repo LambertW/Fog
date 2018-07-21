@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Autofac.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Fog.Dependency
 {
-    public interface ITransientDependency
+    public interface IConfig : IModule
     {
     }
 }

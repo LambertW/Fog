@@ -1,13 +1,15 @@
-﻿using Fog.Domain.Entities;
+﻿using Fog.Dependency;
+using Fog.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Fog.Domain.Repositories
 {
-    public interface IRepository<TEntity, TPrimaryKey> where TEntity : class, IEntity<TPrimaryKey>
+    public interface IRepository<TEntity, TPrimaryKey> : IScopeDependency where TEntity : class, IEntity<TPrimaryKey>
     {
         #region Select/Get/Query
 
@@ -15,13 +17,25 @@ namespace Fog.Domain.Repositories
 
         Task<List<TEntity>> GetAllListAsync();
 
+        List<TEntity> GetAllList(Expression<Func<TEntity, bool>> predicate);
+
+        Task<List<TEntity>> GetAllListAsync(Expression<Func<TEntity, bool>> predicate);
+
+        TEntity Get(TPrimaryKey id);
+
         Task<TEntity> GetAsync(TPrimaryKey id);
+
+        TEntity Single(Expression<Func<TEntity, bool>> predicate);
+
+        Task<TEntity> SingleAsync(Expression<Func<TEntity, bool>> predicate);
 
         TEntity FirstOrDefault(TPrimaryKey id);
 
         Task<TEntity> FirstOrDefaultAsync(TPrimaryKey id);
 
+        TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
 
+        Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate);
         #endregion
 
         #region Insert
