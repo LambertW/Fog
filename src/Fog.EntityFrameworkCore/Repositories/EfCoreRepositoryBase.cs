@@ -12,15 +12,15 @@ namespace Fog.EntityFrameworkCore.Repositories
 {
     public class EfCoreRepositoryBase<TEntity, TPrimaryKey> : RepositoryBase<TEntity, TPrimaryKey> where TEntity : class, IEntity<TPrimaryKey>
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly DbContext _context;
+        public readonly IUnitOfWork UnitOfWork;
+        public readonly DbContext Context;
 
-        public virtual DbSet<TEntity> Table => _context.Set<TEntity>();
+        public virtual DbSet<TEntity> Table => Context.Set<TEntity>();
 
         public EfCoreRepositoryBase(IUnitOfWork unitOfWork, DbContext context)
         {
-            _unitOfWork = unitOfWork;
-            _context = ((EfCoreUnitOfWork)_unitOfWork).GetOrCreateDbContext(context);
+            UnitOfWork = unitOfWork;
+            Context = ((EfCoreUnitOfWork)UnitOfWork).GetOrCreateDbContext(context);
         }
 
         public override Task DeleteAsync(TEntity entity)
@@ -66,13 +66,13 @@ namespace Fog.EntityFrameworkCore.Repositories
         public override Task<TEntity> UpdateAsync(TEntity entity)
         {
             AttachIfNot(entity);
-            _context.Entry(entity).State = EntityState.Modified;
+            Context.Entry(entity).State = EntityState.Modified;
             return Task.FromResult(entity);
         }
 
         protected virtual void AttachIfNot(TEntity entity)
         {
-            var entry = _context.ChangeTracker.Entries().FirstOrDefault(ent => ent.Entity == entity);
+            var entry = Context.ChangeTracker.Entries().FirstOrDefault(ent => ent.Entity == entity);
             if (entity != null)
                 return;
 
@@ -81,7 +81,7 @@ namespace Fog.EntityFrameworkCore.Repositories
 
         protected TEntity GetFromChangeTrackerOrNull(TPrimaryKey id)
         {
-            var entry = _context.ChangeTracker.Entries()
+            var entry = Context.ChangeTracker.Entries()
                 .FirstOrDefault(
                     ent =>
                         ent.Entity is TEntity &&

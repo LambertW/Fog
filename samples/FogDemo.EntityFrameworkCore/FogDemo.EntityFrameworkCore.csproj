@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Fog.EntityFrameworkCore\Fog.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\src\Fog\Fog.csproj" />
+    <ProjectReference Include="..\FogDemo.Core\FogDemo.Core.csproj" />
+  </ItemGroup>
+
+</Project>

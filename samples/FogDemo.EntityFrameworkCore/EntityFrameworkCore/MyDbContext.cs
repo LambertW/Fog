@@ -1,18 +1,20 @@
 ﻿using FogDemo.Core.Domain;
+using FogDemo.Core.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text;
 
-namespace FogDemo.WebApi.Db
+namespace FogDemo.EntityFrameworkCore.EntityFrameworkCore
 {
     public class MyDbContext : DbContext
     {
         public DbSet<Organ> Organs { get; set; }
 
+        public DbSet<Task> Tasks { get; set; }
+
         public MyDbContext(DbContextOptions<MyDbContext> options)
-            :base(options)
+            : base(options)
         {
         }
 

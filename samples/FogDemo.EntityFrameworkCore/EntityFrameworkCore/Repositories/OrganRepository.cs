@@ -1,13 +1,15 @@
 ﻿using Fog.Domain.Uow;
 using Fog.EntityFrameworkCore.Repositories;
 using FogDemo.Core.Domain;
-using FogDemo.WebApi.Db;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace FogDemo.WebApi.Repositories
+namespace FogDemo.EntityFrameworkCore.EntityFrameworkCore.Repositories
 {
     public class OrganRepository : EfCoreTreeRepositoryBase<Organ>, IOrganRepository
     {
-        public OrganRepository(IUnitOfWork unitOfWork, MyDbContext dbContext) 
+        public OrganRepository(IUnitOfWork unitOfWork, MyDbContext dbContext)
             : base(unitOfWork, dbContext)
         {
         }

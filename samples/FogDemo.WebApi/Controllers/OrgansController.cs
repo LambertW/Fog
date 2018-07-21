@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Fog.Dependency;
 using FogDemo.Core.Domain;
-using FogDemo.WebApi.Repositories;
-using Microsoft.AspNetCore.Http;
+using FogDemo.EntityFrameworkCore.EntityFrameworkCore.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FogDemo.WebApi.Controllers
