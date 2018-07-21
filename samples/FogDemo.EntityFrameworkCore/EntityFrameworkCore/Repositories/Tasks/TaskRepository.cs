@@ -13,10 +13,5 @@ namespace FogDemo.EntityFrameworkCore.EntityFrameworkCore.Repositories.Tasks
         public TaskRepository(IUnitOfWork unitOfWork, MyDbContext context) : base(unitOfWork, context)
         {
         }
-
-        public async Task CommitAsync()
-        {
-            await UnitOfWork.CommitAsync();
-        }
     }
 }

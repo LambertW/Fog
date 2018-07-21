@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Fog.EntityFrameworkCore.Uow
 {
-    public class EfCoreUnitOfWork : IUnitOfWork, ITransientDependency
+    public class EfCoreUnitOfWork : IUnitOfWork, IScopeDependency
     {
         protected IDictionary<string, DbContext> ActiveDbContexts { get; } = new Dictionary<string, DbContext>();
 
