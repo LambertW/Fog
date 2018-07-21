@@ -1,14 +1,9 @@
-﻿using Fog.Domain.Repositories;
-using FogDemo.Application.Tasks.Dtos;
-using FogDemo.Core.Tasks;
+﻿using FogDemo.Application.Tasks.Dtos;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Fog.Linq.Extensions;
 using FogDemo.EntityFrameworkCore.EntityFrameworkCore.Repositories.Tasks;
-using Fog.Dependency;
 using Fog.Domain.Uow;
 
 namespace FogDemo.Application.Tasks

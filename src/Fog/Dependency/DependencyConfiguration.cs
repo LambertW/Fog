@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using Fog.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using System;

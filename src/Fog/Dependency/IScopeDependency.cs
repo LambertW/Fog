@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Fog.Dependency
+﻿namespace Fog.Dependency
 {
     public interface IScopeDependency
     {
