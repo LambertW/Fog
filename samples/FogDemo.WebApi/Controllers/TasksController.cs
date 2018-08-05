@@ -22,6 +22,7 @@ namespace FogDemo.WebApi.Controllers
         }
 
         [HttpPost("GetAll")]
+        //[ProducesResponseType(typeof(List<TaskListDto>), 200)]
         public async Task<List<TaskListDto>> GetAll(GetAllTasksInput input)
         {
             return await _taskAppService.GetAll(input);
